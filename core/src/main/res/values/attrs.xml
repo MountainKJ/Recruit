@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="WrapRecyclerView">
+        <attr name="wrv_layoutManager" format="enum">
+            <enum name="linear" value="0" />
+            <enum name="grid" value="1" />
+            <enum name="staggeredGrid" value="2" />
+        </attr>
+        <attr name="wrv_layoutManagerOrientation" format="enum">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+        <attr name="wrv_spanCount" format="integer" />
+        <attr name="wrv_isReverseLayout" format="boolean" />
+
+        <attr name="wrv_divider" format="reference|color" />
+        <attr name="wrv_dividerVertical" format="reference|color" />
+        <attr name="wrv_dividerHorizontal" format="reference|color" />
+        <attr name="wrv_dividerHeight" format="dimension" />
+        <attr name="wrv_dividerVerticalHeight" format="dimension" />
+        <attr name="wrv_dividerHorizontalHeight" format="dimension" />
+    </declare-styleable>
+</resources>

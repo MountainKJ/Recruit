@@ -1,0 +1,77 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.butterknife'
+
+android {
+    compileSdkVersion parent.ext.compileSdkVersion
+    defaultConfig {
+        applicationId "kj.x.recruit"
+        minSdkVersion parent.ext.minSdkVersion
+        targetSdkVersion parent.ext.targetSdkVersion
+        versionCode parent.ext.APP_VERSION_CODE
+        versionName parent.ext.APP_VERSION_NAME
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        release{
+            storeFile file('recruit.jks')
+            storePassword "kj1234"
+            keyAlias "david"
+            keyPassword "kj1234"
+            v2SigningEnabled false
+        }
+        debug{
+            storeFile file('recruit.jks')
+            storePassword "kj1234"
+            keyAlias "david"
+            keyPassword "kj1234"
+            v2SigningEnabled false
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility parent.ext.SOURCE_COMPATIBILITY
+        targetCompatibility parent.ext.TARGET_COMPATIBILITY
+    }
+
+    // 禁止Lint出错导致打包异常终止
+    lintOptions {
+        disable 'MissingTranslation', 'ExtraTranslation'
+        abortOnError false
+        ignoreWarnings true
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':core')
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.android.support:support-v4:28.0.0'
+    //tab layout
+    implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+    //butter-knife
+    api 'com.jakewharton:butterknife:9.0.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0'
+    //glide
+    api 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    //pull_refresh
+    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-21'
+    //event_bus
+    api 'org.greenrobot:eventbus:3.1.1'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
